@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Create running string</title>
+</head>
+<body>
+    <form method="POST" action="create/">
+        {% csrf_token %}
+        <p>
+            <label>Введите строку, например: тест#255,255,255 (цвет текста в RGB)#0,0,0 (цвет фона в RGB)</label><br>
+            <input type="text" name="s" />
+        </p>
+        <input type="submit" value="Создать" >
+    </form>
+
+    <a href="C:\Users\deimo\projects\itsolution\RunningString\RunningStringApi\cache\output_video.mp4">скачать</a>
+
+    {% if history.count > 0 %}
+    <h2>Список запросов</h2>
+    <table>
+        <thead><th>Id</th><th>Содержание</th></thead>
+        {% for history in records %}
+        <tr>
+            <td>{{ history.id }}</td>
+            <td>{{ history.s }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <h3>{% history %}</h3>>
+</body>
+</html>
