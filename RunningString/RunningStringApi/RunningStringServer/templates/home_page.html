@@ -14,21 +14,23 @@
         <input type="submit" value="Создать" >
     </form>
 
-    <a href="C:\Users\deimo\projects\itsolution\RunningString\RunningStringApi\cache\output_video.mp4">скачать</a>
+    <form method="GET" action="download/">
+        {% csrf_token %}
+        <input type="submit" value="Скачать" >
+    </form>
 
     {% if history.count > 0 %}
     <h2>Список запросов</h2>
     <table>
         <thead><th>Id</th><th>Содержание</th></thead>
-        {% for history in records %}
+        {% for record in history %}
         <tr>
-            <td>{{ history.id }}</td>
-            <td>{{ history.s }}</td>
+            <td>{{ record.id }}</td>
+            <td>{{ record.s }}</td>
         </tr>
         {% endfor %}
     </table>
     {% endif %}
 
-    <h3>{% history %}</h3>>
 </body>
 </html>

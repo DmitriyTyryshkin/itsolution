@@ -1,12 +1,16 @@
 import os
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, FileResponse
+from django.http import HttpResponseRedirect, FileResponse, HttpResponse
 from MainRunner.Main import run
 from RunningStringServer.models import History
+from wsgiref.util import FileWrapper
 
 
 def index(request):
     records = History.objects.all()
+    for history in records:
+        print(history.id)
+        print(history.s)
     return render(request, 'home_page.html', {'history': records})
 
 def create_request(request):
@@ -15,9 +19,12 @@ def create_request(request):
         history.s = request.POST.get('s')
         history.save()
         run(history.s)
-        FileResponse(open('C:/Users/deimo/projects/itsolution/RunningString/RunningStringApi/cache/output_video.mp4', 'rb'))
         return HttpResponseRedirect("/")
 
- #render(request, 'home_page.html')  #HttpResponseRedirect("/create")
+def download_file(request):
+    if request.method == 'GET':
+        file = FileWrapper(open('C:/Users/deimo/projects/itsolution/RunningString/RunningStringApi/cache/output_video.mp4', 'rb'))
+        response = HttpResponse(file, content_type='video/mp4')
+        response['Content-Disposition'] = 'attachment; filename= running_string.mp4'
+        return response
 
-# тест#255,255,255#0,0,0

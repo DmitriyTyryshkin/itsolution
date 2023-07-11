@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index),
     path("create/", views.create_request, name = 'create'),
+    path("download/", views.download_file, name = 'download')
 ]
