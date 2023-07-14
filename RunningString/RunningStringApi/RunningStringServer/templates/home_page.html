@@ -5,32 +5,35 @@
     <title>Create running string</title>
 </head>
 <body>
-    <form method="POST" action="create/">
-        {% csrf_token %}
-        <p>
-            <label>Введите строку, например: тест#255,255,255 (цвет текста в RGB)#0,0,0 (цвет фона в RGB)</label><br>
-            <input type="text" name="s" />
-        </p>
-        <input type="submit" value="Создать" >
-    </form>
+<form method="POST" action="create/">
+    {% csrf_token %}
+    <p>
+        <label>Введите строку, например: тест#255,255,255 (цвет текста в RGB)#0,0,0 (цвет фона в RGB)</label><br>
+        <input type="text" name="s"/>
+    </p>
+    <input type="submit" value="Создать">
+</form>
 
-    <form method="GET" action="download/">
-        {% csrf_token %}
-        <input type="submit" value="Скачать" >
-    </form>
+<form method="GET" action="download/">
+    {% csrf_token %}
+    <input type="submit" value="Скачать">
+</form>
 
-    {% if history.count > 0 %}
-    <h2>Список запросов</h2>
-    <table>
-        <thead><th>Id</th><th>Содержание</th></thead>
-        {% for record in history %}
-        <tr>
-            <td>{{ record.id }}</td>
-            <td>{{ record.s }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+{% if history.count > 0 %}
+<h2>Список запросов</h2>
+<table>
+    <thead>
+    <th>Id</th>
+    <th>Содержание</th>
+    </thead>
+    {% for record in history %}
+    <tr>
+        <td>{{ record.id }}</td>
+        <td>{{ record.s }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
 
 </body>
 </html>
