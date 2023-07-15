@@ -8,7 +8,7 @@
 <form method="POST" action="create/">
     {% csrf_token %}
     <p>
-        <label>Введите строку, например: тест#255,255,255 (цвет текста в RGB)#0,0,0 (цвет фона в RGB)</label><br>
+        <label>Введите строку, например: тест#255,255,255(цвет текста в BGR)#0,0,0(цвет фона в BGR)</label><br>
         <input type="text" name="s"/>
     </p>
     <input type="submit" value="Создать">
