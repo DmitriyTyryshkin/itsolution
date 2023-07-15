@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+from cache.get_path import path
+
 frameSize = (100, 100)
 
 
@@ -27,7 +29,7 @@ frameSize = (100, 100)
 
 def run(s: str):
     s = parse(s)
-    out = cv2.VideoWriter('C:/Users/deimo/projects/itsolution/RunningString/RunningStringApi/cache/output_video.mp4',
+    out = cv2.VideoWriter(r''+ path + '\output_video.mp4',
                           cv2.VideoWriter_fourcc(*'mp4v'), len(s[0]) / 2, frameSize)
     lenth = len(s[0])
 

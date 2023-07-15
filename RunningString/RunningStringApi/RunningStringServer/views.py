@@ -5,6 +5,8 @@ from RunningStringServer.models import History
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
+from cache.get_path import path
+
 
 def index(request):
     records = History.objects.all()
@@ -26,7 +28,7 @@ def create_request(request):
 def download_file(request):
     if request.method == 'GET':
         file = FileWrapper(
-            open('C:/Users/deimo/projects/itsolution/RunningString/RunningStringApi/cache/output_video.mp4', 'rb'))
+            open(r''+ path + '\output_video.mp4', 'rb'))
         response = HttpResponse(file, content_type='video/mp4')
         response['Content-Disposition'] = 'attachment; filename= running_string.mp4'
         return response
